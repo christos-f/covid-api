@@ -1,7 +1,7 @@
 const db = require("../configurations/database");
 
-async function defaultMap(req, res) {
+async function currentMap(req, res) {
   res.json({ status: "successful" });
 }
 
-module.exports = { geojsonController: { defaultMap } };
+module.exports = { geojsonController: { currentMap } };

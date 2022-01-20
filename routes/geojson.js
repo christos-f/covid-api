@@ -4,7 +4,7 @@ const { geojsonController } = require("../controllers/geojsonController");
 
 function getGeojsonRoutes(req, res) {
   const router = express.Router();
-  router.get("/", geojsonController.defaultMap);
+  router.get("/current", geojsonController.currentMap);
   return router;
 }
 
