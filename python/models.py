@@ -15,7 +15,6 @@ class State(Base):
     def __repr__(self):
         return "<State(name='%s')>" % self.name
 
- 
 class State_case(Base):
     __tablename__ = "state_cases_table"
     

@@ -1,7 +1,13 @@
-const db = require("../configurations/database");
+const { currentGeojson } = require("../utils/query")
 
 async function currentMap(req, res) {
-  res.json({ status: "successful" });
+  const q = await currentGeojson();
+
+  res.json(q);
 }
 
-module.exports = { geojsonController: { currentMap } };
+module.exports = {
+  geojsonController: {
+    currentMap,
+  },
+};

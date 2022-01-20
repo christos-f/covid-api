@@ -11,4 +11,7 @@ require("./configurations/middleware")(app);
 const { getRoutes } = require("./routes/index");
 app.use("/api", getRoutes());
 
+// Database connection
+require('./configurations/database')
+
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
