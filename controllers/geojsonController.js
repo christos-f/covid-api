@@ -1,9 +1,9 @@
 const { currentGeojson } = require("../utils/query")
 
 async function currentMap(req, res) {
-  const q = await currentGeojson();
+  const result = await currentGeojson();
 
-  res.json(q);
+  res.json(result);
 }
 
 module.exports = {
