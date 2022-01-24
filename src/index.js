@@ -14,4 +14,4 @@ app.use("/api", getRoutes());
 // Database connection
 require('./configurations/database')
 
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

@@ -1,4 +1,23 @@
 {
+  "name": "covid-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christos-f/covid-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christos-f/covid-api/issues"
+  },
+  "homepage": "https://github.com/christos-f/covid-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^14.2.0",
