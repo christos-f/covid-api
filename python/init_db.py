@@ -3,14 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String, Date, ForeignKey, JSON
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.dialects import postgresql
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, JSON
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import Query
-from sqlalchemy.dialects import postgresql
+# from sqlalchemy.dialects import postgresql
 import json
 
 STATE_ID_LIST = [
@@ -25,9 +18,16 @@ df.index.name = "id"
 df = df.rename({'fips': 'state_id'}, axis='columns')
 del df["state"]
 
-DB_URI = "postgresql://postgres:christos@localhost/covid_db"
+DB_URI = "postgresql://postgres:example@db:5432/covid_db"
+
+
+# DB_URI = "postgresql://postgres:christos@localhost/covid_db"
+
+# DB_URI = f"postgresql://{os.environ.get("POSTGRES_USER")}:{os.environ.get("POSTGRES_PASSWORD")}"
+
 Base = declarative_base()
 engine = create_engine(DB_URI)
+
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -58,12 +58,7 @@ class State(Base):
         return "<State(name='%s')>" % self.name
 
 Base.metadata.create_all(engine)
-
 session.commit()
-
-df = df[df['state_id'].isin(STATE_ID_LIST)]
-
-df.to_sql("state_cases_table", engine, if_exists="append")
 
 with open("states.json") as f:
     data = json.load(f)["features"]
@@ -76,3 +71,11 @@ for feature in data:
                   coordinates=feature["geometry"]["coordinates"])
     session.add(state)
 session.commit()
+
+df = df[df['state_id'].isin(STATE_ID_LIST)]
+
+df.to_sql("state_cases_table", engine, if_exists="append")
+
+
+session.close()
+engine.dispose()
