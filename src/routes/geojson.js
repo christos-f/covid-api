@@ -1,13 +1,20 @@
 const express = require("express");
-// Require controller for routes
-const { geojsonController } = require("../controllers/geojsonController");
+
+//require queries 
+const { currentGeojson } = require("../utils/query")
 
 function getGeojsonRoutes(req, res) {
   const router = express.Router();
-  router.get("/current", geojsonController.currentMap);
-  router.get("/ping", geojsonController.ping)
+  router.get("/current", currentMap);
   return router;
 }
+
+async function currentMap(req, res) {
+  const result = await currentGeojson();
+
+  return res.json(result);
+}
+
 
 module.exports = { getGeojsonRoutes };
 
