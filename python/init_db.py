@@ -20,11 +20,6 @@ del df["state"]
 
 DB_URI = "postgresql://postgres:example@db:5432/covid_db"
 
-
-# DB_URI = "postgresql://postgres:christos@localhost/covid_db"
-
-# DB_URI = f"postgresql://{os.environ.get("POSTGRES_USER")}:{os.environ.get("POSTGRES_PASSWORD")}"
-
 Base = declarative_base()
 engine = create_engine(DB_URI)
 
